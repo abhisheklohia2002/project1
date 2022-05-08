@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+        a{
+            text-decoration: none;
+            font-size: 25px;
+            color: black;
+            font-weight: bolder
+            ;
+
+        }
+        #ol{
+  
+  height: 60px;
+  background-color: aqua;
+  font-size: 25px;
+  justify-content: space-around;
+  
+  }
+  a{
+      text-decoration: none;
+      color: black;
+      font-weight: bolder;
+  }
+ div{
+    margin-bottom: 60px;
+
+ }
+ 
+img{
+
+height: 180px;
+width: 140px;
+margin: auto;
+}
+#main-box{
+margin-top: 5px;
+
+height: 190px;
+width: 160px;
+padding-left: 10px;
+padding-top: 10px;
+}
+#div1{
+text-align: center;
+/* border: 2px solid teal; */
+width: 168px;
+font-family: Arial, Helvetica, sans-serif;
+padding-top: 3px;
+}
+#div2{
+text-align: center;
+
+width: 240px;
+height: 70px;
+font-family: Arial, Helvetica, sans-serif;
+padding-top: 3px; 
+margin-top: 5px;
+}
+button{
+height: 40px;
+width: 100px;
+color: white;
+margin-top: 5px;
+background-color: black;
+}
+#head{
+width: 300px;
+
+}
+#head img{
+padding-left: 80px;
+}
+#head #div1{
+padding-left: 60px;
+}
+#head #div2{
+padding-left: 30px;
+}
+.start{
+color: rgb(104, 104, 172);
+}
+.name{
+color: black;
+font-weight: bold;
+
+}
+.company{
+color: gray;
+font-size: 13px;
+margin-top: 2px;
+margin-bottom: 25px;
+
+}
+.price{
+color: black;
+font-weight: bold;
+}
+
+.view{
+color: red;
+font-size: 14px;
+}
+button:hover{
+background-color: aliceblue;
+color: black;
+cursor: pointer;
+}
+
+#first{
+border: 2px solid red;
+height: 60px;
+font-size: 25px;
+font-family: Arial, Helvetica, sans-serif;
+margin-left: 300px;
+margin-top: 20px;
+}
+
+
+#img1{
+height: 230px;
+width: auto;
+margin-left: 60px;
+}
+
+
+
+#container{
+/* display: flex; */
+width: 95%;
+/* height:auto; */
+/* border: 1px solid black; */
+margin:auto
+
+}
+.right{
+width:20%;
+/* height: auto; */
+/* border: 1px solid black; */
+
+}
+#name{
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+  margin-top: 5px;
+}
+.price{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+font-weight: bolder;
+
+}
+#data{
+    height:300px;
+    width: 390px;
+    /* background-color: aqua; */
+    text-align: center;
+    padding-left: 50px;
+
+}
+#value{
+    margin-top: 17px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#make{
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    margin-bottom: 20px;
+}
+    </style>
+</head>
+<body>
+   
+    <section style="display: grid; grid-template-columns: 100px 100px 100px 100px;row-gap: 60px
+    ;column-gap: 350px;justify-content: center;">
+
+    </section>
+</body>
+</html>
+<script>
+    var cart = JSON.parse(localStorage.getItem("container"));
+
+    displayData(cart);
+function displayData(data){
+document.querySelector("section").innerHTML="";
+
+  data.forEach(function(ele,index){
+    var container = document.createElement("div");
+    container.setAttribute("id","data")
+    var image =document.createElement("img");
+    
+    var name = document.createElement("p");
+    // name.setAttribute("id","name");
+
+    var name1 = document.createElement("p");
+
+    name.setAttribute("id","name")
+    var price = document.createElement("p");
+    var discount = document.createElement("p");
+    discount.setAttribute("id","value");
+
+    var make = document.createElement("p");
+name1.innerText = ele.com;
+make.setAttribute("id","make");
+
+
+    var button = document.createElement("button");
+    
+    
+ image.setAttribute("src",ele.image_url);
+//  image.innerText =ele.image_url;
+ name.innerText = ele.brand;
+ price.innerText = ele.name;
+ price.setAttribute("class","price");
+
+ 
+ discount.innerText = ele.price
+ make.innerText = ele.view;
+
+
+    button.textContent = "DELETE"
+
+
+
+    button.addEventListener("click",function(){
+      deleteFromCart(index);
+      
+    })
+
+
+
+    container.append(image,name,price,name1,discount,make,button);
+
+    document.querySelector("section").append(container)
+
+})
+
+}
+
+
+function deleteFromCart(index){
+    cart.splice(index,1)
+    localStorage.setItem("cart",JSON.stringify(cart))
+    displayData(cart)
+
+}
+
+
+</script>
